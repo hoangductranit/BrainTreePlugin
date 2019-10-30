@@ -39,6 +39,8 @@ repositories {
         }
     }
 }
+  ext.cdvMinSdkVersion = 21
+
 
 def getPackageName() {
     def config = file("src/main/res/xml/config.xml").getText()

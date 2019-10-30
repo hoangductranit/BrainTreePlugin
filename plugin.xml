@@ -3,6 +3,8 @@
     xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <name>BrainTree Plugin</name>
+    <description>BrainTree plugin using Drop In v4.4.1</description>
+    <author>Peter Tran</author>
     <js-module name="BrainTreePlugin" src="www/BrainTreePlugin.js">
         <clobbers target="BrainTreePlugin" />
     </js-module>

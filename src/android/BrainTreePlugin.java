@@ -98,6 +98,8 @@ public class BrainTreePlugin extends CordovaPlugin {
         }
         else
         {
+            dropInRequest.collectDeviceData(true);
+            dropInRequest.vaultManager(true);
             dropInRequest.disableVenmo();
         }
 
@@ -199,7 +201,6 @@ public class BrainTreePlugin extends CordovaPlugin {
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
 
-
         if (dropInUICallbackContext == null) {
             return;
         }
@@ -207,15 +208,23 @@ public class BrainTreePlugin extends CordovaPlugin {
         if (requestCode == DROP_IN_REQUEST) {
 
             PaymentMethodNonce paymentMethodNonce = null;
-            
-            if (resultCode == Activity.RESULT_OK) {
+            if(resultCode==Activity.RESULT_OK) {
                 DropInResult result = intent.getParcelableExtra(DropInResult.EXTRA_DROP_IN_RESULT);
-                if(result!=null){
-                    paymentMethodNonce = result.getPaymentMethodNonce();
-                }
+                paymentMethodNonce = result.getPaymentMethodNonce();
+                this.handleDropInPaymentUiResult(paymentMethodNonce);
             }
-
-            this.handleDropInPaymentUiResult(resultCode, paymentMethodNonce);
+            else if(requestCode==Activity.RESULT_CANCELED)
+            {
+                Map<String, Object> resultMap = new HashMap<String, Object>();
+                resultMap.put("userCancelled", true);
+                dropInUICallbackContext.success(new JSONObject(resultMap));
+                dropInUICallbackContext = null;
+                return;
+            }
+            else {
+                Exception error = (Exception)intent.getSerializableExtra(DropInActivity.EXTRA_ERROR);
+                dropInUICallbackContext.error(error.getMessage());return;
+            }
         }
         else if (requestCode == PAYMENT_BUTTON_REQUEST) {
             //TODO
@@ -233,14 +242,6 @@ public class BrainTreePlugin extends CordovaPlugin {
     private void handleDropInPaymentUiResult(int resultCode, PaymentMethodNonce paymentMethodNonce) {
 
         if (dropInUICallbackContext == null) {
-            return;
-        }
-
-        if (resultCode == Activity.RESULT_CANCELED) {
-            Map<String, Object> resultMap = new HashMap<String, Object>();
-            resultMap.put("userCancelled", true);
-            dropInUICallbackContext.success(new JSONObject(resultMap));
-            dropInUICallbackContext = null;
             return;
         }
 

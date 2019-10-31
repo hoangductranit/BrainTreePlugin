@@ -109,7 +109,6 @@ public class BrainTreePlugin extends CordovaPlugin {
 
         String amount=null;
         String currencyMode=null;
-        String paypalMerchantId=null;
         String googleMerchantId=null;
         Boolean googleProductEnv=false;
 
@@ -120,8 +119,8 @@ public class BrainTreePlugin extends CordovaPlugin {
         }
 
         // Ensure we have the correct number of arguments.
-        if (args.length() != 5) {
-            callbackContext.error("Amount, Currency type, Google MerchantId/Pay Pal MerchantId are required.");
+        if (args.length() != 4) {
+            callbackContext.error("Amount, Currency type, Google MerchantId are required.");
             return;
         }
 
@@ -129,14 +128,15 @@ public class BrainTreePlugin extends CordovaPlugin {
         amount = args.getString(0);
         currencyMode = args.getString(1);
         googleMerchantId = args.getString(3);
-        paypalMerchantId= args.getString(4);
 
         if (amount == null) {
             callbackContext.error("Amount is required.");
+            return;
         }
 
         if (currencyMode == null) {
             callbackContext.error("Currency type is required.");
+            return;
         }
 
         if(args.getString(2)!=null)
@@ -146,13 +146,13 @@ public class BrainTreePlugin extends CordovaPlugin {
 
         if (googleMerchantId == null && googleProductEnv) {
             callbackContext.error("Google MerchantId is required.");
+            return;
         }
 
         //PayPal Request
-        dropInRequest.paypalRequest(SetUpPayPalRequest(
+       dropInRequest.paypalRequest(SetUpPayPalRequest(
             amount,
-            currencyMode,
-            paypalMerchantId));
+            currencyMode));
 
         //Google Payment Request
         dropInRequest.googlePaymentRequest(SetUpGooglePayRequest(
@@ -169,12 +169,11 @@ public class BrainTreePlugin extends CordovaPlugin {
     }
 
     //Setup Paypal Request
-    private PayPalRequest SetUpPayPalRequest(String amount,String currencyCode,String payPalMerchantId)
+    private PayPalRequest SetUpPayPalRequest(String amount,String currencyCode)
     {
         PayPalRequest returnPayPalRequest=new PayPalRequest(amount);
         returnPayPalRequest.currencyCode(currencyCode);
-        if(payPalMerchantId!=null)
-            returnPayPalRequest.merchantAccountId(payPalMerchantId);
+        returnPayPalRequest.intent(PayPalRequest.INTENT_AUTHORIZE);
         return returnPayPalRequest;
     }
     //Setup Google Request

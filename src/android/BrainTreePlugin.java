@@ -120,7 +120,7 @@ public class BrainTreePlugin extends CordovaPlugin {
 
         // Ensure we have the correct number of arguments.
         if (args.length() != 4) {
-            callbackContext.error("Amount, Currency type, Google MerchantId/Pay Pal MerchantId are required.");
+            callbackContext.error("Amount, Currency type, Google MerchantId are required.");
             return;
         }
 
@@ -173,7 +173,7 @@ public class BrainTreePlugin extends CordovaPlugin {
     {
         PayPalRequest returnPayPalRequest=new PayPalRequest(amount);
         returnPayPalRequest.currencyCode(currencyCode);
-        //returnPayPalRequest.intent(PayPalRequest.INTENT_AUTHORIZE);
+        returnPayPalRequest.intent(PayPalRequest.INTENT_AUTHORIZE);
         return returnPayPalRequest;
     }
     //Setup Google Request

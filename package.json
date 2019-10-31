@@ -11,7 +11,8 @@
   },
   "keywords": [
     "ecosystem:cordova",
-    "cordova-android"
+    "cordova-android",
+    "cordova-ios"
   ],
   "author": "Peter Tran",
   "license": "MIT"

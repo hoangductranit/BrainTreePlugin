@@ -1,7 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="peter-plugin-braintree" version="0.1.0"
-    xmlns="http://apache.org/cordova/ns/plugins/1.0"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<plugin id="peter-plugin-braintree" version="0.1.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>BrainTree Plugin</name>
     <description>BrainTree plugin using Drop In v4.4.1</description>
     <author>Peter Tran</author>
@@ -14,20 +12,51 @@
                 <param name="android-package" value="peter.plugin.braintree.BrainTreePlugin" />
             </feature>
         </config-file>
-        <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+        <config-file parent="/*" target="AndroidManifest.xml" />
         <source-file src="src/android/BrainTreePlugin.java" target-dir="src/peter/plugin/braintree/BrainTreePlugin" />
-        <framework src="src/android/build-extras.gradle" custom="true" type="gradleReference" />
-        <config-file target="AndroidManifest.xml" parent="/manifest/application">
-            <activity android:name="com.braintreepayments.api.BraintreeBrowserSwitchActivity"
-                android:launchMode="singleTask">
-                <intent-filter>
-                    <action android:name="android.intent.action.VIEW" />
-                    <category android:name="android.intent.category.DEFAULT" />
-                    <category android:name="android.intent.category.BROWSABLE" />
-                    <data android:scheme="${applicationId}.braintree" />
-                </intent-filter>
+        <framework custom="true" src="src/android/build-extras.gradle" type="gradleReference" />
+        <config-file parent="/manifest/application" target="AndroidManifest.xml">
+            <activity android:launchMode="singleTask" android:name="com.braintreepayments.api.BraintreeBrowserSwitchActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="${applicationId}.braintree" />
+            </intent-filter>
             </activity>
-            <meta-data android:name="com.google.android.gms.wallet.api.enabled" android:value="true"/>
+            <meta-data android:name="com.google.android.gms.wallet.api.enabled" android:value="true" />
         </config-file>
+    </platform>
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="BrainTreePlugin">
+            <param name="ios-package" value="BrainTreePlugin" />
+            </feature>
+        </config-file>
+        <source-file src="src/ios/BrainTreePlugin.m" />
+        <header-file src="src/ios/BraintreePlugin.h" />
+        
+        <framework src="lib/ios/PayPalUtils.framework" custom="true" embed="true" weak="false" />
+        <framework src="lib/ios/PayPalDataCollector.framework" custom="true" embed="true" weak="false" />
+        <framework src="lib/ios/PayPalOneTouch.framework" custom="true" embed="true" weak="false" />
+        <framework src="lib/ios/BraintreeVenmo.framework" custom="true" embed="true" weak="false" />
+        <framework src="lib/ios/BraintreeUnionPay.framework" custom="true" embed="true" weak="false" />
+        <framework src="lib/ios/BraintreeUIKit.framework" custom="true" embed="true" weak="false" />
+        <framework src="lib/ios/BraintreeDropIn.framework" custom="true" embed="true" weak="false" />
+        <framework src="lib/ios/BraintreePayPal.framework" custom="true" embed="true" weak="false" />
+        <framework src="lib/ios/BraintreeDataCollector.framework" custom="true" embed="true" weak="false" />
+        <framework src="lib/ios/BraintreeCore.framework" custom="true" embed="true" weak="false" />
+        <framework src="lib/ios/BraintreeCard.framework" custom="true" embed="true" weak="false" />
+        <framework src="lib/ios/BraintreeApplePay.framework" custom="true" embed="true" weak="false" />
+        <framework src="lib/ios/Braintree3DSecure.framework" custom="true" embed="true" weak="false" />
+        <framework src="lib/ios/CardinalMobile.framework" custom="true" embed="true" weak="false" />
+        <framework src="lib/ios/BraintreeUI.framework" custom="true" embed="true" weak="false" />
+        <framework src="lib/ios/BraintreeAmericanExpress.framework" custom="true" embed="true" weak="false" />
+    </platform>
+    </platform>
+    </platform>
+    </platform>
+    </platform>
+    </platform>
     </platform>
 </plugin>

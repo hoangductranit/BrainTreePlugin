@@ -5,7 +5,8 @@
   "cordova": {
     "id": "peter-plugin-braintree",
     "platforms": [
-      "android"
+      "android",
+	"ios"
     ]
   },
   "keywords": [

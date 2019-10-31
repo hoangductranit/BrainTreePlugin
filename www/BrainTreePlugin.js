@@ -50,18 +50,12 @@ BrainTreePlugin.presentDropInPaymentUI = function showDropInUI(options, successC
     if (typeof(options.googleMerchantId) !== "string") {
         options.googleMerchantId ="";
     };
-
-    if (typeof(options.paypalMerchantId) !== "string") {
-        options.paypalMerchantId ="";
-    };
     
-
     var pluginOptions = [
         options.amount,
         options.currencyMode,
         options.googleProductEnv,
-        options.googleMerchantId,
-        options.paypalMerchantId
+        options.googleMerchantId
     ];
     exec(successCallback, failureCallback, Plugin_ID, "presentDropInPaymentUI", pluginOptions);
 };

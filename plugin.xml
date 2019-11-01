@@ -54,10 +54,4 @@
         <framework src="lib/ios/BraintreeUI.framework" custom="true" embed="true" weak="false" />
         <framework src="lib/ios/BraintreeAmericanExpress.framework" custom="true" embed="true" weak="false" />
     </platform>
-    </platform>
-    </platform>
-    </platform>
-    </platform>
-    </platform>
-    </platform>
 </plugin>

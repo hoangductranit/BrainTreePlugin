@@ -129,19 +129,19 @@ public class BrainTreePlugin extends CordovaPlugin {
         currencyMode = args.getString(1);
         googleMerchantId = args.getString(3);
 
-        if (amount == null) {
+        if (amount == null || amount.equals("")) {
             callbackContext.error("Amount is required.");
             return;
         }
 
-        if (currencyMode == null) {
+        if (currencyMode == null || currencyMode.equals("")) {
             callbackContext.error("Currency type is required.");
             return;
         }
 
         if(args.getString(2)!=null)
         {
-            googleProductEnv=Boolean.getBoolean(args.getString(2));
+            googleProductEnv=Boolean.parseBoolean(args.getString(2));
         }
 
         if (googleMerchantId == null && googleProductEnv) {
@@ -187,7 +187,7 @@ public class BrainTreePlugin extends CordovaPlugin {
                         .setTotalPrice(amount)
                         .build())
                 .billingAddressRequired(true)
-                .emailRequired(true);
+                .emailRequired(true).paypalEnabled(true).allowPrepaidCards(true);
         if(productEnv) {
             environment = "PRODUCTION";
             returnGooglePayment.googleMerchantId(googleMerchantId);
@@ -222,7 +222,8 @@ public class BrainTreePlugin extends CordovaPlugin {
             }
             else {
                 Exception error = (Exception)intent.getSerializableExtra(DropInActivity.EXTRA_ERROR);
-                dropInUICallbackContext.error(error.getMessage());return;
+                dropInUICallbackContext.error(error.getMessage());
+                return;
             }
         }
         else if (requestCode == PAYMENT_BUTTON_REQUEST) {
@@ -282,23 +283,13 @@ public class BrainTreePlugin extends CordovaPlugin {
             resultMap.put("firstName", payPalAccountNonce.getFirstName());
             resultMap.put("lastName", payPalAccountNonce.getLastName());
             resultMap.put("phone", payPalAccountNonce.getPhone());
-            //resultMap.put("billingAddress", payPalAccountNonce.getBillingAddress()); //TODO
-            //resultMap.put("shippingAddress", payPalAccountNonce.getShippingAddress()); //TODO
+            resultMap.put("billingAddress", payPalAccountNonce.getBillingAddress()); //TODO
+            resultMap.put("shippingAddress", payPalAccountNonce.getShippingAddress()); //TODO
             resultMap.put("clientMetadataId", payPalAccountNonce.getClientMetadataId());
             resultMap.put("payerId", payPalAccountNonce.getPayerId());
 
             resultMap.put("payPalAccount", innerMap);
         }
-        // Venmo
-        if (paymentMethodNonce instanceof VenmoAccountNonce) {
-            VenmoAccountNonce venmoAccountNonce = (VenmoAccountNonce) paymentMethodNonce;
-
-            Map<String, Object> innerMap = new HashMap<String, Object>();
-            innerMap.put("username", venmoAccountNonce.getUsername());
-
-            resultMap.put("venmoAccount", innerMap);
-        }
-
         //google pay
         if(paymentMethodNonce instanceof GooglePaymentCardNonce)
         {

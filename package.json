@@ -5,12 +5,14 @@
   "cordova": {
     "id": "peter-plugin-braintree",
     "platforms": [
-      "android"
+      "android",
+	"ios"
     ]
   },
   "keywords": [
     "ecosystem:cordova",
-    "cordova-android"
+    "cordova-android",
+    "cordova-ios"
   ],
   "author": "Peter Tran",
   "license": "MIT"

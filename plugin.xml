@@ -37,21 +37,21 @@
         <source-file src="src/ios/BrainTreePlugin.m" />
         <header-file src="src/ios/BraintreePlugin.h" />
         
-        <framework src="lib/ios/PayPalUtils.framework" custom="true" embed="true" weak="false" />
-        <framework src="lib/ios/PayPalDataCollector.framework" custom="true" embed="true" weak="false" />
-        <framework src="lib/ios/PayPalOneTouch.framework" custom="true" embed="true" weak="false" />
-        <framework src="lib/ios/BraintreeVenmo.framework" custom="true" embed="true" weak="false" />
-        <framework src="lib/ios/BraintreeUnionPay.framework" custom="true" embed="true" weak="false" />
-        <framework src="lib/ios/BraintreeUIKit.framework" custom="true" embed="true" weak="false" />
-        <framework src="lib/ios/BraintreeDropIn.framework" custom="true" embed="true" weak="false" />
-        <framework src="lib/ios/BraintreePayPal.framework" custom="true" embed="true" weak="false" />
-        <framework src="lib/ios/BraintreeDataCollector.framework" custom="true" embed="true" weak="false" />
-        <framework src="lib/ios/BraintreeCore.framework" custom="true" embed="true" weak="false" />
-        <framework src="lib/ios/BraintreeCard.framework" custom="true" embed="true" weak="false" />
-        <framework src="lib/ios/BraintreeApplePay.framework" custom="true" embed="true" weak="false" />
-        <framework src="lib/ios/Braintree3DSecure.framework" custom="true" embed="true" weak="false" />
-        <framework src="lib/ios/CardinalMobile.framework" custom="true" embed="true" weak="false" />
-        <framework src="lib/ios/BraintreeUI.framework" custom="true" embed="true" weak="false" />
-        <framework src="lib/ios/BraintreeAmericanExpress.framework" custom="true" embed="true" weak="false" />
+        <framework src="src/ios/PayPalUtils.framework" custom="true" embed="true" weak="false" />
+        <framework src="src/ios/PayPalDataCollector.framework" custom="true" embed="true" weak="false" />
+        <framework src="src/ios/PayPalOneTouch.framework" custom="tre" embed="true" weak="false" />
+        <framework src="src/ios/BraintreeVenmo.framework" custom="true" embed="true" weak="false" />
+        <framework src="src/ios/BraintreeUnionPay.framework" custom="true" embed="true" weak="false" />
+        <framework src="src/ios/BraintreeUIKit.framework" custom="true" embed="true" weak="false" />
+        <framework src="src/ios/BraintreeDropIn.framework" custom="true" embed="true" weak="false" />
+        <framework src="src/ios/BraintreePayPal.framework" custom="true" embed="true" weak="false" />
+        <framework src="src/ios/BraintreeDataCollector.framework" custom="true" embed="true" weak="false" />
+        <framework src="src/ios/BraintreeCore.framework" custom="true" embed="true" weak="false" />
+        <framework src="src/ios/BraintreeCard.framework" custom="true" embed="true" weak="false" />
+        <framework src="src/ios/BraintreeApplePay.framework" custom="true" embed="true" weak="false" />
+        <framework src="src/ios/Braintree3DSecure.framework" custom="true" embed="true" weak="false" />
+        <framework src="src/ios/CardinalMobile.framework" custom="true" embed="true" weak="false" />
+        <framework src="src/ios/BraintreeUI.framework" custom="true" embed="true" weak="false" />
+        <framework src="src/ios/BraintreeAmericanExpress.framework" custom="true" embed="true" weak="false" />
     </platform>
 </plugin>
